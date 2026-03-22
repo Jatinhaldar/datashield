@@ -1,0 +1,22 @@
+# Environments
+.env
+
+# Environment examples can be committed, but protect your real secrets!
+# .env.example
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# IDEs
+.vscode/
+.idea/

@@ -24,5 +24,18 @@ async def get_ai_response(prompt: str) -> str:
         )
         return chat_completion.choices[0].message.content
     except Exception as e:
-        print(f"Error calling Groq API: {e}")
+        print(f"Error calling Groq Chat API: {e}")
         return "Sorry, I encountered an error while processing your request."
+
+async def transcribe_audio(file_path: str) -> str:
+    try:
+        with open(file_path, "rb") as file:
+            transcription = await client.audio.transcriptions.create(
+                file=(os.path.basename(file_path), file.read()),
+                model="whisper-large-v3",
+                response_format="text-verbose",
+            )
+            return transcription.text
+    except Exception as e:
+        print(f"Error during audio transcription: {e}")
+        return ""

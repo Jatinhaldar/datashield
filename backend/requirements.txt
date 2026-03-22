@@ -4,3 +4,9 @@ pydantic
 groq
 requests
 python-dotenv
+pdfplumber
+pandas
+openpyxl
+pytesseract
+Pillow
+python-multipart
