@@ -2,6 +2,7 @@ import os
 import shutil
 from tempfile import NamedTemporaryFile
 from fastapi import FastAPI, HTTPException, UploadFile, File, Form
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from shield import DataShield
 from ai_client import get_ai_response, transcribe_audio
@@ -9,6 +10,15 @@ from database import log_interaction
 from file_parser import extract_text_from_file
 
 app = FastAPI(title="DataShield LLM Backend")
+
+# Add CORS Middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173", "http://localhost:5174"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 shield = DataShield()
 

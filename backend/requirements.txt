@@ -2,7 +2,7 @@ fastapi
 uvicorn
 pydantic
 groq
-requests
+supabase
 python-dotenv
 pdfplumber
 pandas
@@ -10,3 +10,4 @@ openpyxl
 pytesseract
 Pillow
 python-multipart
+gunicorn
