@@ -13,7 +13,7 @@ async def get_ai_response(prompt: str) -> str:
             messages=[
                 {
                     "role": "system",
-                    "content": "You are a helpful assistant."
+                    "content": "You are a helpful assistant. Always provide your responses in a concise, point-wise (bulleted) format. Use bold headers for key sections."
                 },
                 {
                     "role": "user",
