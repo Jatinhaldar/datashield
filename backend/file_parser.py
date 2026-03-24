@@ -4,9 +4,19 @@ import pandas as pd
 import pytesseract
 from PIL import Image
 
-# Configure Tesseract path for Windows
-# Make sure to install it to this exact path or update this line if you put it elsewhere!
-pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+import platform
+import shutil
+import os
+
+# Configure Tesseract path for different operating systems
+if platform.system() == "Windows":
+    # On Windows, we often need to specify the path if it's not in the system environment variables
+    # We check if Tesseract is already in the PATH first
+    if not shutil.which("tesseract"):
+        windows_tesseract_path = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+        if os.path.exists(windows_tesseract_path):
+            pytesseract.pytesseract.tesseract_cmd = windows_tesseract_path
+# On Linux/Docker, pytesseract automatically finds 'tesseract' in the system PATH.
 
 def parse_pdf(file_bytes: bytes) -> str:
     text_content = ""
